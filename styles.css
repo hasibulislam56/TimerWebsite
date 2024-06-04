@@ -1,37 +1,37 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
 }
 
-.timer-container {
-    text-align: center;
+.timer-container, .notes-container, .tasks-container {
     background: #fff;
     padding: 20px;
+    margin: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px;
+    text-align: center;
 }
 
 #timer {
-    font-size: 4em;
+    font-size: 2em;
     margin: 20px 0;
 }
 
-input {
+input, textarea {
     font-size: 1em;
     padding: 10px;
     margin: 5px;
-    width: 60px;
-    text-align: center;
+    width: calc(100% - 22px);
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.buttons button {
+.buttons button, #addNoteButton, #addTaskButton {
     font-size: 1em;
     padding: 10px 20px;
     margin: 5px;
@@ -55,3 +55,35 @@ input {
     color: black;
 }
 
+#addNoteButton, #addTaskButton {
+    background-color: #2196F3;
+    color: white;
+}
+
+#notes, #tasks {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.note, .task {
+    background: #f9f9f9;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.task-complete {
+    text-decoration: line-through;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #f44336;
+}

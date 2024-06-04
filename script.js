@@ -10,6 +10,12 @@ const hoursInput = document.getElementById('hours');
 const minutesInput = document.getElementById('minutes');
 const secondsInput = document.getElementById('seconds');
 const alarmSound = document.getElementById('alarmSound');
+const noteInput = document.getElementById('noteInput');
+const addNoteButton = document.getElementById('addNoteButton');
+const notesContainer = document.getElementById('notes');
+const taskInput = document.getElementById('taskInput');
+const addTaskButton = document.getElementById('addTaskButton');
+const tasksContainer = document.getElementById('tasks');
 
 function formatTime(unit) {
     return unit < 10 ? `0${unit}` : unit;
@@ -74,7 +80,55 @@ function resetTimer() {
     updateDisplay(0, 0, 0);
 }
 
+function addNote() {
+    const noteText = noteInput.value.trim();
+    if (noteText === '') return;
+
+    const note = document.createElement('div');
+    note.classList.add('note');
+    note.textContent = noteText;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+    deleteButton.textContent = 'X';
+    deleteButton.addEventListener('click', () => {
+        notesContainer.removeChild(note);
+    });
+
+    note.appendChild(deleteButton);
+    notesContainer.appendChild(note);
+
+    noteInput.value = '';
+}
+
+function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText === '') return;
+
+    const task = document.createElement('li');
+    task.classList.add('task');
+    task.textContent = taskText;
+
+    task.addEventListener('click', () => {
+        task.classList.toggle('task-complete');
+    });
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('delete-button');
+    deleteButton.textContent = 'X';
+    deleteButton.addEventListener('click', (e) => {
+        tasksContainer.removeChild(task);
+        e.stopPropagation();
+    });
+
+    task.appendChild(deleteButton);
+    tasksContainer.appendChild(task);
+
+    taskInput.value = '';
+}
+
 startButton.addEventListener('click', countdownTimer);
 stopButton.addEventListener('click', stopTimer);
 resetButton.addEventListener('click', resetTimer);
-
+addNoteButton.addEventListener('click', addNote);
+addTaskButton.addEventListener('click', addTask);
