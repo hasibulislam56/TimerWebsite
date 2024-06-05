@@ -4,17 +4,45 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    background-color: #f0f0f0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-toggle button {
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .timer-container, .notes-container, .tasks-container {
-    background: #fff;
+    background: var(--container-bg);
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 300px;
+    width: 100%;
+    max-width: 400px;
     text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.time-inputs {
+    display: flex;
+    justify-content: space-between;
 }
 
 #timer {
@@ -26,9 +54,16 @@ input, textarea {
     font-size: 1em;
     padding: 10px;
     margin: 5px;
-    width: calc(100% - 22px);
+    width: calc(33.3% - 22px);
     border: 1px solid #ccc;
     border-radius: 5px;
+    background: var(--input-bg);
+    color: var(--input-text);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+textarea {
+    width: calc(100% - 22px);
 }
 
 .buttons button, #addNoteButton, #addTaskButton {
@@ -38,6 +73,7 @@ input, textarea {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #startButton {
@@ -66,12 +102,13 @@ input, textarea {
 }
 
 .note, .task {
-    background: #f9f9f9;
+    background: var(--task-bg);
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
     border: 1px solid #ccc;
     position: relative;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .task-complete {
@@ -87,3 +124,39 @@ input, textarea {
     cursor: pointer;
     color: #f44336;
 }
+
+/* Light Theme */
+:root {
+    --container-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-text: #000000;
+    --task-bg: #f9f9f9;
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    --container-bg: #333333;
+    --input-bg: #555555;
+    --input-text: #ffffff;
+    --task-bg: #444444;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+@media (min-width: 600px) {
+    .container {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .timer-container, .notes-container, .tasks-container {
+        width: 30%;
+    }
+
+    .time-inputs input {
+        width: calc(30% - 22px);
+    }
+}
+

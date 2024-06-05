@@ -16,6 +16,7 @@ const notesContainer = document.getElementById('notes');
 const taskInput = document.getElementById('taskInput');
 const addTaskButton = document.getElementById('addTaskButton');
 const tasksContainer = document.getElementById('tasks');
+const themeButton = document.getElementById('themeButton');
 
 function formatTime(unit) {
     return unit < 10 ? `0${unit}` : unit;
@@ -127,8 +128,19 @@ function addTask() {
     taskInput.value = '';
 }
 
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    if (document.body.classList.contains('dark-theme')) {
+        themeButton.textContent = '🌜';
+    } else {
+        themeButton.textContent = '🌞';
+    }
+}
+
 startButton.addEventListener('click', countdownTimer);
 stopButton.addEventListener('click', stopTimer);
 resetButton.addEventListener('click', resetTimer);
 addNoteButton.addEventListener('click', addNote);
 addTaskButton.addEventListener('click', addTask);
+themeButton.addEventListener('click', toggleTheme);
+
